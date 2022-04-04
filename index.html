@@ -19,16 +19,16 @@
         <img class="nav__logo" src="img/logo.png" alt="logo" />
         <ul class="nav__list">
           <li class="nav__item">
-            <a class="nav__link" href="#section--1">features</a>
+            <a class="nav__link" href="#section-features">features</a>
           </li>
           <li class="nav__item">
-            <a class="nav__link" href="#section--2">operations</a>
+            <a class="nav__link" href="#section-operations">operations</a>
           </li>
           <li class="nav__item">
             <a class="nav__link" href="#section--3">testimonials</a>
           </li>
           <li class="nav__item">
-            <button class="btn btn--nav">open account</button>
+            <button class="btn btn--green btn--nav">open account</button>
           </li>
         </ul>
       </nav>
@@ -42,12 +42,167 @@
           <h4 class="header__sub-title">
             A simpler banking experience for a simpler life.
           </h4>
-          <a class="btn--green" href="#section--1">learn more &downarrow; </a>
+          <a class="btn--txt" href="#section-features"
+            >learn more &downarrow;
+          </a>
         </article>
         <img class="header__img" src="img/hero.png" alt="hero" />
       </section>
     </header>
 
+    <!-- Features -->
+    <section class="section" id="section-features">
+      <div class="section__title">
+        <h4 class="section__subtitle">FEATURES</h4>
+        <h2 class="section__maintitle">
+          Everything you need in a modern bank and more.
+        </h2>
+      </div>
+
+      <div class="features">
+        <img
+          class="features__img lazy-img"
+          src="img/digital-lazy.jpg"
+          data-src="img/digital.jpg"
+          alt="computer"
+        />
+        <article class="features__feature">
+          <div class="features__icon">
+            <svg>
+              <use href="img/icons.svg#icon-monitor"></use>
+            </svg>
+          </div>
+          <h5 class="features__title">100% digital bank</h5>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste iure,
+            at perspiciatis animi numquam exercitationem. Voluptates distinctio
+            ea perferendis deleniti sequi dolorum neque autem optio.
+          </p>
+        </article>
+
+        <article class="features__feature">
+          <div class="features__icon">
+            <svg>
+              <use href="img/icons.svg#icon-trending-up"></use>
+            </svg>
+          </div>
+          <h5 class="features__title">Watch your money grow</h5>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste iure,
+            at perspiciatis animi numquam exercitationem. Voluptates distinctio
+            ea perferendis deleniti sequi dolorum neque autem optio.
+          </p>
+        </article>
+        <img
+          class="features__img lazy-img"
+          src="img/grow-lazy.jpg"
+          data-src="img/grow.jpg"
+          alt="computer"
+        />
+
+        <img
+          class="features__img lazy-img"
+          src="img/card-lazy.jpg"
+          data-src="img/card.jpg"
+          alt="computer"
+        />
+        <article class="features__feature">
+          <div class="features__icon">
+            <svg>
+              <use href="img/icons.svg#icon-credit-card"></use>
+            </svg>
+          </div>
+          <h5 class="features__title">Free debit card included</h5>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste iure,
+            at perspiciatis animi numquam exercitationem. Voluptates distinctio
+            ea perferendis deleniti sequi dolorum neque autem optio.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Operations -->
+    <section class="section" id="section-operations">
+      <div class="section__title">
+        <h4 class="section__subtitle">OPERATIONS</h4>
+        <h2 class="section__maintitle">
+          Everything as simple as possible, but no simpler.
+        </h2>
+      </div>
+
+      <div class="operations">
+        <div class="operations__tab-container">
+          <button
+            class="btn operations__tab operations__tab--1 operations__tab--active"
+            data-tab="1"
+          >
+            <span>01</span>Instant Transfers
+          </button>
+          <button class="btn operations__tab operations__tab--2" data-tab="2">
+            <span>02</span>Instant Loans
+          </button>
+          <button class="btn operations__tab operations__tab--3" data-tab="3">
+            <span>03</span>Instant Closing
+          </button>
+        </div>
+
+        <div
+          class="operations__content operations__content--1 operations__content--active"
+        >
+          <div class="operations__icon operations__icon--1">
+            <svg>
+              <use href="img/icons.svg#icon-upload"></use>
+            </svg>
+          </div>
+          <h5 class="operations__header">
+            Tranfser money to anyone, instantly! No fees, no BS.
+          </h5>
+          <p class="operations__text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </p>
+        </div>
+
+        <div class="operations__content operations__content--2">
+          <div class="operations__icon operations__icon--2">
+            <svg>
+              <use href="img/icons.svg#icon-home"></use>
+            </svg>
+          </div>
+          <h5 class="operations__header">
+            Buy a home or make your dreams come true, with instant loans.
+          </h5>
+          <p class="operations__text">
+            Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+        </div>
+
+        <div class="operations__content operations__content--3">
+          <div class="operations__icon operations__icon--3">
+            <svg>
+              <use href="img/icons.svg#icon-user-x"></use>
+            </svg>
+          </div>
+          <h5 class="operations__header">
+            No longer need your account? No problem! Close it instantly.
+          </h5>
+          <p class="operations__text">
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+            officia deserunt mollit anim id est laborum. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal -->
     <div class="overlay hidden"></div>
     <div class="modal hidden">
       <h2 class="modal__title">
@@ -70,7 +225,7 @@
           <label class="form__label">email address</label>
           <input class="form__input" type="email" />
         </div>
-        <button class="btn btn--modal">
+        <button class="btn--green btn--modal">
           Next step
           <svg class="form__icon">
             <use href="img/icons.svg#icon-arrow-right"></use>
