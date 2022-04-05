@@ -1,6 +1,8 @@
 "use strict";
 
-const navItems = document.querySelectorAll(".nav__item");
+const sections = document.querySelectorAll(".section");
+const nav = document.querySelector(".nav");
+const navLinks = document.querySelectorAll(".nav__link");
 const navLogo = document.querySelector(".nav__logo");
 const btnClose = document.querySelector(".btn--close");
 const overlay = document.querySelector(".overlay");
@@ -13,20 +15,23 @@ const navList = document.querySelector(".nav__list");
 const tabContainer = document.querySelector(".operations__tab-container");
 const operationsTabs = document.querySelectorAll(".operations__tab");
 const operationsContents = document.querySelectorAll(".operations__content");
+const header = document.querySelector(".header");
+const featuresImages = document.querySelectorAll(".features__img");
 
 /////////// Header hover functionality
-navItems.forEach((navItem) => {
-  navItem.addEventListener("mouseover", (e) => {
-    navItems.forEach((navItem) => (navItem.style.opacity = 0.5));
-    navLogo.style.opacity = 0.5;
-    e.target.parentElement.style.opacity = 1;
-  });
+const handleHover = function (e) {
+  if (!e.target.classList.contains("nav__link")) return;
 
-  navItem.addEventListener("mouseleave", (e) => {
-    navItems.forEach((navItem) => (navItem.style.opacity = 1));
-    navLogo.style.opacity = 1;
+  // fade out/in links(except target link) and logo
+  navLinks.forEach((link) => {
+    if (link !== e.target) link.style.opacity = this;
   });
-});
+  navLogo.style.opacity = this;
+};
+
+nav.addEventListener("mouseover", handleHover.bind(0.5));
+
+nav.addEventListener("mouseout", handleHover.bind(1));
 
 /////////// Modal functionality
 const closeModal = () => {
@@ -91,3 +96,63 @@ tabContainer.addEventListener("click", (e) => {
     .querySelector(`.operations__content--${clickedBtn.dataset.tab}`)
     .classList.add("operations__content--active");
 });
+
+/////////// Sticky navigation
+const navHeight = nav.getBoundingClientRect().height;
+
+const stickyNav = (entries) => {
+  if (!entries[0].isIntersecting) nav.classList.add("sticky");
+  else nav.classList.remove("sticky");
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`, //stick navigation before reach section features
+});
+headerObserver.observe(header);
+
+/////////// Reveal sections
+const revealSection = (entries, observer) => {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+
+  entry.target.classList.remove("section--hidden");
+
+  //stop observing section
+  observer.unobserve(entry.target);
+};
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.2,
+});
+
+//observing all sections
+sections.forEach((section) => sectionObserver.observe(section));
+
+/////////// Lazy loading images
+const lazyLoading = (entries, observer) => {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) return;
+
+  //replace src(low quality image) with data-src(real image)
+  const newSrc = entry.target.dataset.src;
+  entry.target.setAttribute("src", newSrc);
+
+  //after loading the high quality image, remove the blur effect
+  entry.target.addEventListener("load", () => {
+    entry.target.classList.remove("lazy-img");
+  });
+
+  //stop observing images after loading images
+  observer.unobserve(entry.target);
+};
+
+const imageObserver = new IntersectionObserver(lazyLoading, {
+  root: null,
+  threshold: 0,
+});
+
+featuresImages.forEach((img) => imageObserver.observe(img));

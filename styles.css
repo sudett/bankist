@@ -75,6 +75,13 @@ a {
   z-index: 100;
 }
 
+.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
 .nav__logo {
   height: 4.5rem;
   transition: all 0.3s;
@@ -107,7 +114,7 @@ a {
   background-color: var(--color-primary-darker);
 }
 
-.section-header {
+.header__content {
   max-width: 115rem;
   margin: 10rem auto;
   display: grid;
