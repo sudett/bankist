@@ -17,6 +17,10 @@ const operationsTabs = document.querySelectorAll(".operations__tab");
 const operationsContents = document.querySelectorAll(".operations__content");
 const header = document.querySelector(".header");
 const featuresImages = document.querySelectorAll(".features__img");
+const slides = document.querySelectorAll(".slide");
+const slideBtnLeft = document.querySelector(".slider__btn--left");
+const slideBtnRight = document.querySelector(".slider__btn--right");
+const dotsContainer = document.querySelector(".dots");
 
 /////////// Header hover functionality
 const handleHover = function (e) {
@@ -156,3 +160,76 @@ const imageObserver = new IntersectionObserver(lazyLoading, {
 });
 
 featuresImages.forEach((img) => imageObserver.observe(img));
+
+/////////// Slider
+let curSlide = 0;
+
+//create dots
+const createDots = () => {
+  slides.forEach((slide, i) => {
+    dotsContainer.insertAdjacentHTML(
+      "beforeend",
+      `<button class="${
+        i === 0 ? "dots__dot--active" : ""
+      } dots__dot" data-slide="${i}"></button>`
+    );
+  });
+};
+createDots();
+
+//slider
+const slider = (curSlide) => {
+  slides.forEach(
+    (slide, i) =>
+      (slide.style.transform = `translateX(${(i - curSlide) * 100}%)`)
+  );
+};
+slider(0);
+
+//add active dot class
+const dots = document.querySelectorAll(".dots__dot");
+
+const activateDot = () => {
+  dots.forEach((dot, i) => {
+    if (i === curSlide) dot.classList.add("dots__dot--active");
+    else dot.classList.remove("dots__dot--active");
+  });
+};
+
+//slide through dots
+dotsContainer.addEventListener("click", (e) => {
+  if (!e.target.classList.contains("dots__dot")) return;
+  curSlide = +e.target.dataset.slide;
+  slider(curSlide);
+  activateDot();
+});
+
+//next slide
+const nextSlide = () => {
+  curSlide++;
+
+  if (curSlide >= slides.length) curSlide = 0;
+
+  slider(curSlide);
+  activateDot();
+};
+
+slideBtnRight.addEventListener("click", nextSlide);
+
+//previous slide
+const prevSlide = () => {
+  curSlide--;
+
+  if (curSlide < 0) curSlide = slides.length - 1;
+
+  slider(curSlide);
+  activateDot();
+};
+
+slideBtnLeft.addEventListener("click", prevSlide);
+
+//slide through keyboard arrows
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight") nextSlide();
+  if (e.key === "ArrowLeft") prevSlide();
+});
